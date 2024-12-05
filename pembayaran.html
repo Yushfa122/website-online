@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script>
+        const menuPrices = {
+            "Nasi Goreng Spesial": 20000,
+            "Ayam Penyet": 25000,
+            "Rendang Daging": 30000,
+            "Sate": 15000,
+            "Gado-Gado": 12000,
+            "Soto": 18000,
+            "Burger": 25000,
+            "Pizza": 30000,
+            "Spaghetti": 28000,
+            "Rujak Cingur": 12000,
+            "Bakso": 12000,
+            "Tahu Telor": 12000,
+            "Pangsit Mie Ayam": 12000,
+            "Nasi Soto Ayam": 12000,
+            "Nasi Rawon": 12000,
+            "Nasi Kremes": 12000,
+            "Kotok'an": 12000,
+            "Siomay Batagor": 12000,
+            "Nasi Pecel": 12000,
+            "Nasi Kare": 12000,
+            "Lalapan Ayam": 12000,
+            "Mujair, Ati, Rempelo": 12000,
+            "Nasi Urap": 12000,
+            "Sate Komo": 12000
+        };
+
+        function updateTotal() {
+            let total = 0;
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            checkboxes.forEach((checkbox) => {
+                total += menuPrices[checkbox.value];
+            });
+            document.getElementById('total').value = total;
+        }
+
+        function showQRCode(event) {
+            event.preventDefault(); // Mencegah pengiriman form default
+            const total = document.getElementById('total').value;
+            const qrCodeContainer = document.getElementById('qr-code');
+            qrCodeContainer.innerHTML = `
+                <h3>Total Pembayaran: Rp ${total}</h3>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?data=Total%20Pembayaran%20Rp.${total}&size=200x200" alt="QR Code">
+            `;
+            qrCodeContainer.style.display = 'block'; // Menampilkan QR code
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Kantin UM</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="fakultas.html" class="nav-link">Fakultas</a></li>
+                    <li><a href="#" class="nav-link">Tentang Kami</a></li>
+                    <li><a href="#" class="nav-link">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2>Pembayaran</h2>
+        <form onsubmit="showQRCode(event)">
+            <label for="nama">Nama:</label>
+            <input type="text" id="nama" name="nama" required>
+
+            <h3>Pilih Menu:</h3>
+            <p>Makanan</p>
+          <div>
+                <input type="checkbox" id="nasi-goreng" name="menu" value="Nasi Goreng Spesial" onclick="updateTotal()">
+                <label for="nasi-goreng">Nasi Goreng Spesial - Rp 20.000</label><br>
+
+                <input type="checkbox" id="ayam-penyet" name="menu" value="Ayam Penyet" onclick="updateTotal()">
+                <label for="ayam-penyet">Ayam Penyet - Rp 25.000</label><br>
+
+                <input type="checkbox" id="rendang ```html
+" name="menu" value="Rendang Daging" onclick="updateTotal()">
+                <label for="rendang">Rendang Daging - Rp 30.000</label><br>
+
+                <input type="checkbox" id="sate" name="menu" value="Sate" onclick="updateTotal()">
+                <label for="sate">Sate - Rp 15.000</label><br>
+
+                <input type="checkbox" id="gado-gado" name="menu" value="Gado-Gado" onclick="updateTotal()">
+                <label for="gado-gado">Gado-Gado - Rp 12.000</label><br>
+                
+                <input type="checkbox" id="rujak-cingur" name="menu" value="Rujak Cingur" onclick="updateTotal()">
+                <label for="rujak-cingur">Rujak Cingur - Rp 12.000</label><br>
+
+                <input type="checkbox" id="bakso" name="menu" value="Bakso" onclick="updateTotal()">
+                <label for="bakso">Bakso - Rp 12.000</label><br>
+
+                <input type="checkbox" id="tahu-telor" name="menu" value="Tahu Telor" onclick="updateTotal()">
+                <label for="tahu-telor">Tahu Telor - Rp 12.000</label><br>
+
+                <input type="checkbox" id="pangsit-mie-ayam" name="menu" value="Pangsit Mie Ayam" onclick="updateTotal()">
+                <label for="pangsit-mie-ayam">Pangsit Mie Ayam - Rp 12.000</label><br>
+
+                <input type="checkbox" id="nasi-soto-ayam" name="menu" value="Nasi Soto Ayam" onclick="updateTotal()">
+                <label for="nasi-soto-ayam">Nasi Soto Ayam - Rp 12.000</label><br>
+
+                <input type="checkbox" id="nasi-rawon" name="menu" value="Nasi Rawon" onclick="updateTotal()">
+                <label for="nasi-rawon">Nasi Rawon - Rp 12.000</label><br>
+
+                <input type="checkbox" id="nasi-kremes" name="menu" value="Nasi Kremes" onclick="updateTotal()">
+                <label for="nasi-kremes">Nasi Kremes - Rp 12.000</label><br>
+
+                <input type="checkbox" id="kotokan" name="menu" value="Kotok'an" onclick="updateTotal()">
+                <label for="kotokan">Kotok'an - Rp 12.000</label><br>
+
+                <input type="checkbox" id="siomay-batagor" name="menu" value="Siomay Batagor" onclick="updateTotal()">
+                <label for="siomay-batagor">Siomay Batagor - Rp 12.000</label><br>
+
+                <input type="checkbox" id="nasi-pecel" name="menu" value="Nasi Pecel" onclick="updateTotal()">
+                <label for="nasi-pecel">Nasi Pecel - Rp 12.000</label><br>
+
+                <input type="checkbox" id="nasi-kare" name="menu" value="Nasi Kare" onclick="updateTotal()">
+                <label for="nasi-kare">Nasi Kare - Rp 12.000</label><br>
+
+                <input type="checkbox" id="lalapan-ayam" name="menu" value="Lalapan Ayam" onclick="updateTotal()">
+                <label for="lalapan-ayam">Lalapan Ayam - Rp 12.000</label><br>
+
+                <input type="checkbox" id="mujair-ati-rempelo" name="menu" value="Mujair, Ati, Rempelo" onclick="updateTotal()">
+                <label for="mujair-ati-rempelo">Mujair, Ati, Rempelo - Rp 12.000</label><br>
+
+                <input type="checkbox" id="nasi-urap" name="menu" value="Nasi Urap" onclick="updateTotal()">
+                <label for="nasi-urap">Nasi Urap - Rp 12.000</label><br>
+
+                <input type="checkbox" id="sate-komo" name="menu" value="S ```html
+ate Komo" onclick="updateTotal()">
+                <label for="sate-komo">Sate Komo - Rp 12.000</label><br>
+
+                <input type="checkbox" id="soto" name="menu" value="Soto" onclick="updateTotal()">
+                <label for="soto">Soto - Rp 18.000</label>
+                <p>&nbsp;</p>
+                <p>Minuman</p>
+                <p>
+                  <input type="checkbox" id="menu" name="menu2" value="S ```html
+ate Komo" onclick="updateTotal()">
+                  <label for="menu">Jus Buah  - Rp 7.000</label>
+                  <br>
+                  <input type="checkbox" id="menu2" name="menu2" value="Soto" onclick="updateTotal()">
+                  <label for="menu2">Es Campu  - Rp 4.000<br>
+                  </label>
+                  <input type="checkbox" id="menu22" name="menu22" value="S ```html
+ate Komo" onclick="updateTotal()">
+                  <label for="menu22">Soda Gembira   - Rp 4.000 </label>
+                  <br>
+                  <input type="checkbox" id="menu23" name="menu22" value="Soto" onclick="updateTotal()">
+                  <label for="menu23">Es Dawet  - Rp 3.000</label>
+                </p>
+                <p>
+                  <input type="checkbox" id="menu24" name="menu23" value="S ```html
+ate Komo" onclick="updateTotal()">
+                  <label for="menu24">Es Kacang Ijo   - Rp 3.500</label>
+                  <br>
+                  <input type="checkbox" id="menu25" name="menu23" value="Soto" onclick="updateTotal()">
+                  <label for="menu25">Es Teh  - Rp 3.000<br>
+                  </label>
+                  <input type="checkbox" id="menu222" name="menu222" value="S ```html
+ate Komo" onclick="updateTotal()">
+                  <label for="menu222">Kopi Susu    - Rp 4.000 </label>
+                  <br>
+                  <input type="checkbox" id="menu223" name="menu222" value="Soto" onclick="updateTotal()">
+                  <label for="menu223">Kopi Hitam   - Rp 3.000</label>
+</p>
+                <p>
+                  <input type="checkbox" id="menu232" name="menu232" value="S ```html
+ate Komo" onclick="updateTotal()">
+                  <label for="menu232">Pop Ice    - Rp 3.000</label>
+                  <br>
+                  <input type="checkbox" id="menu233" name="menu232" value="Soto" onclick="updateTotal()">
+                  <label for="menu233">Es Susu   - Rp 3.000<br>
+                  </label>
+                  <input type="checkbox" id="menu2222" name="menu2222" value="S ```html
+ate Komo" onclick="updateTotal()">
+                  <label for="menu2222">Jahe     - Rp 4.000 </label>
+                  <br>
+                  <input type="checkbox" id="menu2223" name="menu2222" value="Soto" onclick="updateTotal()">
+                  <label for="menu2223">Teh Pucuk    - Rp 3.000</label>
+                  <br>
+                    <br>
+                    </p>
+          </div>
+
+            <label for="total">Total Pembayaran:</label>
+            <input type="text" id="total" name="total" readonly>
+
+            <button type="submit" class="btn-primary">Bayar</button>
+        Pesanan anda akan kami proses setelah pembayaran
+        </form>
+
+        <div id="qr-code" style="display:none; margin-top:20px;">
+            <!-- QR Code will be displayed here -->
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Kantin UM | Modern dan Interaktif</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

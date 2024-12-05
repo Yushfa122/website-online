@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Cafe Warna</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        header, footer {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h2 {
+            margin: 20px 0;
+            color: #343a40;
+        }
+        .menu-list {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .menu-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        .menu-list li {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .menu-list input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .total-container {
+            margin-top: 20px;
+            text-align: right;
+        }
+        #qr-container {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Cafe Warna</div>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2>Menu Cafe Warna</h2>
+        <div class="menu-list">
+            <ul id="menu-items">
+                <li>
+                  <label>Makanan<br>
+                  <input type="checkbox" data-price="12000"> 
+                    Nasi Tempong Telur Kriwul</label> 
+                <span>Rp 12,000.00</span></li>
+                <li><label><input type="checkbox" data-price="14000"> Nasi Tempong Ayam</label> <span>Rp 14,000.00</span></li>
+                <li><label><input type="checkbox" data-price="15000"> Nasi Tempong Cumi Asin</label> <span>Rp 15,000.00</span></li>
+                <li><label><input type="checkbox" data-price="15000"> Nasi Tempong Paru Batokok</label> <span>Rp 15,000.00</span></li>
+                <li><label><input type="checkbox" data-price="16000"> Nasi Ayam Saus Mentega</label> <span>Rp 16,000.00</span></li>
+                <li><label><input type="checkbox" data-price="10000"> Nasi Ayam Bakar Kemangi</label> <span>Rp 10,000.00</span></li>
+                <li><label><input type="checkbox" data-price="13000"> Nasi Ayam Bakar Cumi Asin</label> <span>Rp 13,000.00</span></li>
+                <li><label><input type="checkbox" data-price="15000"> Nasi Siram Ayam</label> <span>Rp 15,000.00</span></li>
+                <li><label><input type="checkbox" data-price="13000"> Nasi Soto Ayam</label> <span>Rp 13,000.00</span></li>
+                <li><label><input type="checkbox" data-price="11000"> Capcay</label> <span>Rp 11,000.00</span></li>
+                <li><label><input type="checkbox" data-price="10000"> Nasi Rakyat Paket Telur</label> <span>Rp 10,000.00</span></li>
+                <li><label><input type="checkbox" data-price="12000"> Nasi Rakyat Paket Ayam</label> <span>Rp 12,000.00</span></li>
+                <li><label><input type="checkbox" data-price="13000"> Nasi Goreng Jawa</label> <span>Rp 13,000.00</span></li>
+                <li><label><input type="checkbox" data-price="12000"> Nasi Goreng Chinese</label> <span>Rp 12,000.00</span></li>
+                <li><label><input type="checkbox" data-price="7000"> Tahu Walik</label> <span>Rp 7,000.00</span></li>
+                <li><label><input type="checkbox" data-price="7000"> Cireng Bumbu Rujak</label> <span>Rp 7,000.00</span></li>
+                <li><label><input type="checkbox" data-price="8000"> Original Croissant</label> <span>Rp 8,000.00</span></li>
+                <li></li>
+                <li>Minuman</li>
+                <li><label><input type="checkbox" data-price="8000"> Es Kopi Susu</label> <span>Rp 8,000.00</span></li>
+                <li><label><input type="checkbox" data-price="4000"> Kopi Hitam</label> <span>Rp 4,000.00</span></li>
+				<li><label><input type="checkbox" data-price="4000"> Es Teh</label> <span>Rp 4,000.00</span></li>
+				<li><label><input type="checkbox" data-price="4000">
+				Milkshake
+				</label> 
+				<span>Rp 10,000.00</span></li>
+                <!-- Anda dapat melanjutkan untuk memasukkan semua menu -->
+            </ul>
+        </div>
+        <div class="total-container">
+            <h3>Total Harga: Rp <span id="total-price">0</span></h3>
+            <button class="button" onClick="generateQRCode()">Bayar Sekarang</button>
+        </div>
+        <div id="qr-container">
+            <h3>Scan QR Code untuk Pembayaran</h3>
+            <div id="qr-code"></div><img src="assets/images/images.png">
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cafe Warna | Lezat dan Nikmat</p>
+        </div>
+    </footer>
+
+    <script>
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const totalPriceElement = document.getElementById('total-price');
+        let totalPrice = 0;
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const price = parseInt(checkbox.getAttribute('data-price'));
+                if (checkbox.checked) {
+                    totalPrice += price;
+                } else {
+                    totalPrice -= price;
+                }
+                totalPriceElement.textContent = totalPrice.toLocaleString('id-ID');
+            });
+        });
+
+        function generateQRCode() {
+            const qrContainer = document.getElementById('qr-container');
+            const qrCode = document.getElementById('qr-code');
+            qrContainer.style.display = 'block';
+            qrCode.innerHTML = '';
+            const paymentData = `Total Pembayaran: Rp ${totalPrice.toLocaleString('id-ID')}`;
+            QRCode.toCanvas(qrCode, paymentData, error => {
+                if (error) console.error(error);
+            });
+        }
+    </script>
+</body>
+</html>

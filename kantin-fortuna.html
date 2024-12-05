@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran Kantin Fortuna</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script>
+        const menuPrices = {
+            "Ayam Geprek Bobo": 12000,
+            "Ayam Krispi Carnival": 12000,
+            "Ayam Bakar": 12000,
+            "Chicken Crunchy": 12000,
+            "Ayam Pop Corn": 12000,
+            "Chicken Balls": 12000,
+            "Ayam Lalapan": 12000,
+            "Ayam Kremes": 12000,
+            "Lalapan Tahu, Tempe": 12000,
+            "Lalapan Usus, Jamur, Terong": 12000,
+            "Dadar Telur Kriting": 12000,
+            "Mie Judes Original Level 1-5": 12000,
+            "Mie Judes Goreng Manis lv 1-5": 12000,
+            "Mie Judes Kuah Level 1-5": 12000,
+            "Nutrisari Semua Rasa": 7000,
+            "Drink Beng-beng": 7000,
+            "Milo": 7000,
+            "Dancow": 7000,
+            "Chocolatos": 7000,
+            "Matcha": 7000,
+            "Kopi Hitam": 7000,
+            "Kopi Susu": 7000,
+            "Es Jeruk (H/D)": 6000,
+            "Es Teh": 5000,
+            "Soda Gembira": 8000,
+            "Josua": 8000,
+            "Kentang Wedges": 10000,
+            "Pentol Pedas": 10000,
+            "Risol Mayo": 4000
+        };
+
+        function updateTotal() {
+            let total = 0;
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            checkboxes.forEach((checkbox) => {
+                total += menuPrices[checkbox.value];
+            });
+            document.getElementById('total').value = total;
+        }
+
+        function showQRCode(event) {
+            event.preventDefault(); // Mencegah pengiriman form default
+            const total = document.getElementById('total').value;
+            const qrCodeContainer = document.getElementById('qr-code');
+            qrCodeContainer.innerHTML = `
+                <h3>Total Pembayaran: Rp ${total}</h3>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?data=Total%20Pembayaran%20Rp.${total}&size=200x200" alt="QR Code">
+            `;
+            qrCodeContainer.style.display = 'block'; // Menampilkan QR code
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Kantin Fortuna</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="menu.html" class="nav-link">Menu</a></li>
+                    <li><a href="#" class="nav-link">Tentang Kami</a></li>
+                    <li><a href="#" class="nav-link">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2>Pembayaran</h2>
+        <form onsubmit="showQRCode(event)">
+            <label for="nama">Nama:</label>
+            <input type="text" id="nama" name="nama" required>
+
+            <h3>Pilih Menu:</h3>
+            <div>
+                <p>&nbsp;</p>
+                <p>Makanan                </p>
+                <p>
+                  <input type="checkbox" id="ayam-geprek-bobo" name="menu" value="Ayam Geprek Bobo" onclick="updateTotal()">
+                  <label for="label">Ayam Geprek Bobo - Rp 12.000</label>
+</p>
+                <label for="ayam-geprek-bobo"></label>
+
+                <input type="checkbox" id="ayam-krispi-carnival" name="menu" value="Ayam Krispi Carnival" onclick="updateTotal()">
+                <label for="ayam-krispi-carnival">Ayam Krispi Carnival - Rp 12.000</label><br>
+
+                <input type="checkbox" id="ayam-bakar" name="menu" value="Ayam Bakar" onclick="updateTotal()">
+                <label for="ayam-bakar">Ayam Bakar - Rp 12.000</label><br>
+
+                <input type="checkbox" id="chicken-crunchy" name="menu" value="Chicken Crunchy" onclick="updateTotal()">
+                <label for="chicken-crunchy">Chicken Crunchy - Rp 12.000</label><br>
+
+                <input type="checkbox" id="ayam-pop-corn" name="menu" value="Ayam Pop Corn" onclick="updateTotal()">
+                <label for="ayam-pop-corn">Ayam Pop Corn - Rp 12.000</label><br>
+
+                <input type="checkbox" id="chicken-balls" name="menu" value="Chicken Balls" onclick="updateTotal()">
+                <label for="chicken-balls">Chicken Balls - Rp 12.000</label><br>
+
+                <input type="checkbox" id="ayam-lalapan" name="menu" value="Ayam Lalapan" onclick="updateTotal()">
+                <label for="ayam-lalapan">Ayam Lalapan - Rp 12.000</label><br>
+
+                <input type="checkbox" id="ayam-kremes" name="menu" value="Ayam Kremes" onclick="updateTotal()">
+                <label for="ayam-kremes">Ayam Kremes - Rp 12.000</label><br>
+
+                <input type="checkbox" id="lalapan-tahu-tempe" name="menu" value="Lalapan Tahu, Tempe" onclick="updateTotal()">
+                <label for="lalapan-tahu-tempe">Lalapan Tahu, Tempe - Rp 12.000</label><br>
+
+                <input type="checkbox" id="lalapan-usus-jamur-terong" name="menu" value="Lalapan Usus, Jamur, Terong" onclick="updateTotal()">
+                <label for="lalapan-usus-jamur-terong">Lalapan Usus, Jamur, Terong - Rp 12.000</label><br>
+
+                <input type="checkbox" id="dadar-telur-kriting" name="menu" value="Dadar Telur Kriting" onclick="updateTotal()">
+                <label for="dadar-telur-kriting">Dadar Telur Kriting - Rp 12.000</label><br>
+
+                <input type="checkbox" id="mie-judes-original" name="menu" value="Mie Judes Original Level 1-5" onclick="updateTotal()">
+                <label for="mie-judes-original">Mie Judes Original Level 1-5 - Rp 12.000</label><br>
+
+                <input type="checkbox" id="mie-judes-goreng" name="menu" value="Mie Judes Goreng Manis lv 1-5" onclick="updateTotal()">
+                <label for="mie-judes-goreng">Mie Judes Goreng Manis lv 1-5 - Rp 12.000</label><br>
+
+                <input type="checkbox" id="mie-judes-kuah" name="menu" value="Mie Judes Kuah Level 1-5" onclick="updateTotal()">
+                <label for="mie-judes-kuah">Mie Judes Kuah Level 1-5 - Rp 12.000</label>
+                <p>&nbsp;</p>
+                <p>Minuman<br>
+                  
+                    <input type="checkbox" id="nutrisari" name="menu" value="Nutrisari Semua Rasa" onclick="updateTotal()">
+                    <label for="label">Nutrisari Semua Rasa - Rp 7.000</label>
+                </p>
+                <label for="nutrisari"></label>
+
+                <input type="checkbox" id="drink-beng-beng" name="menu" value="Drink Beng-beng" onclick="updateTotal()">
+                <label for="drink-beng-beng">Drink Beng-beng - Rp 7.000</label><br>
+
+                <input type="checkbox" id="milo" name="menu" value="Milo" onclick="updateTotal()">
+                <label for="milo">Milo - Rp 7.000</label>
+                <br>
+
+                <input type="checkbox" id="chocolatos" name="menu" value="Chocolatos" onclick="updateTotal()">
+                <label for="chocolatos">Chocolatos - Rp 7.000</label><br>
+
+                <input type="checkbox" id="matcha" name="menu" value="Matcha" onclick="updateTotal()">
+                <label for="matcha">Matcha - Rp 7.000</label><br>
+
+                <input type="checkbox" id="kopi-hitam" name="menu" value="Kopi Hitam" onclick="updateTotal()">
+                <label for="kopi-hitam">Kopi Hitam - Rp 7.000</label><br>
+
+                <input type="checkbox" id="kopi-susu" name="menu" value="Kopi Susu" onclick="updateTotal()">
+                <label for="kopi-susu">Kopi Susu - Rp 7.000</label><br>
+
+                <input type="checkbox" id="es-jeruk" name="menu" value="Es Jeruk (H/D)" onclick="updateTotal()">
+                <label for="es-jeruk">Es Jeruk (H/D) - Rp 6.000</label><br>
+
+                <input type="checkbox" id="es-teh" name="menu" value="Es Teh" onclick="updateTotal()">
+                <label for="es-teh">Es Teh - Rp 5.000</label><br>
+
+                <input type="checkbox" id="soda-gembira" name="menu" value="Soda Gembira" onclick="updateTotal()">
+                <label for="soda-gembira">Soda Gembira - Rp 8.000</label><br>
+
+                <input type="checkbox" id="josua" name="menu" value="Josua" onclick="updateTotal()">
+                <label for="josua">Josua - Rp 8.000</label>
+                <p>&nbsp;</p>
+                <p>Jajanan<br>
+                  
+                    <input type="checkbox" id="kentang-wedges" name="menu" value="Kentang Wedges" onclick="updateTotal()">
+                    <label for="label">Kentang Wedges - Rp 10.000</label>
+</p>
+                <label for="kentang-wedges"></label>
+
+                <input type="checkbox" id="pentol-pedas" name="menu" value="Pentol Pedas" onclick="updateTotal()">
+                <label for="pentol-pedas">Pentol Pedas - Rp 10.000</label><br>
+
+                <input type="checkbox" id="risol-mayo" name="menu" value="Risol Mayo" onclick="updateTotal()">
+                <label for="risol-mayo">Risol Mayo - Rp 4.000</label><br>
+          </div>
+
+            <h3>Total Harga:</h3>
+            <input type="text" id="total" name="total" value="0" readonly>
+
+            <button type="submit">Bayar</button>
+         Pesanan akan diproses setelah pembayaran
+        </form>
+
+        <div id="qr-code" style="display:none;"></div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Kantin Fortuna | Modern dan Interaktif</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

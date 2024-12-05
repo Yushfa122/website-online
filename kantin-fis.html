@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kantin FIS - Menu</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script>
+        function calculateTotal() {
+            const checkboxes = document.querySelectorAll(".menu-item input[type='checkbox']");
+            let total = 0;
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    total += parseFloat(checkbox.value);
+                }
+            });
+            document.getElementById("total-price").innerText = `Total: Rp ${total.toFixed(3)}`;
+        }
+
+        function showQRCode() {
+            const qrCode = document.getElementById("qr-code");
+            qrCode.style.display = "block";
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Kantin FIS</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="fakultas.html" class="nav-link">Fakultas</a></li>
+                    <li><a href="#" class="nav-link">Tentang Kami</a></li>
+                    <li><a href="#" class="nav-link">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2>Menu Kantin FIS</h2>
+        <p>Makanan</p>
+        <div class="menu-list">
+            <!-- Menu Items -->
+            <div class="menu-item">
+                <input type="checkbox" value="15000" onChange="calculateTotal()"> Soto Betawi - Rp 15,000
+            </div>
+            <div class="menu-item">
+                <input type="checkbox" value="14000" onChange="calculateTotal()"> Ayam Geprek - Rp 14,000
+            </div>
+            <div class="menu-item">
+                <input type="checkbox" value="13000" onChange="calculateTotal()"> Ayam Laos - Rp 13,000
+            </div>
+            <div class="menu-item">
+                <input type="checkbox" value="15000" onChange="calculateTotal()"> Nasi Campur - Rp 15,000
+            </div>
+            <div class="menu-item">
+                <input type="checkbox" value="15000" onChange="calculateTotal()"> Rujak Cingur - Rp 15,000
+            </div>
+            <div class="menu-item">
+                <input type="checkbox" value="11000" onChange="calculateTotal()"> Nasi Bakar - Rp 11,000
+            </div>
+            <div class="menu-item">
+                <p>
+                  <input type="checkbox" value="12500" onChange="calculateTotal()"> 
+                  Rice Bowl - Rp 12,500            </p>
+                <p>Minuman    </p>
+            </div>
+            <div class="menu-item">
+                <input type="checkbox" value="5000" onChange="calculateTotal()"> Es Jeruk - Rp 5,000
+            </div>
+            <div class="menu-item">
+                <input type="checkbox" value="4000" onChange="calculateTotal()"> Teh Botol - Rp 4,000
+            </div>
+            <div class="menu-item">
+                <input type="checkbox" value="3500" onChange="calculateTotal()"> Air Mineral - Rp 3,500
+            </div>
+            <div class="menu-item">
+                <input type="checkbox" value="8000" onChange="calculateTotal()"> Pocari Sweat - Rp 8,000
+            </div>
+        </div>
+
+        <!-- Total Price and QR Code -->
+        <div class="total">
+            <p id="total-price">Total: Rp 0</p>
+            <button onClick="showQRCode()" class="btn-primary">Bayar</button>
+            <div id="qr-code" style="display:none; margin-top: 20px;">
+                <img src="assets/images/qr-code-placeholder.png" alt="QR Code Pembayaran" style="max-width: 150px;">
+                <p>Scan untuk membayar</p><img src="assets/images/images.png">
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Kantin FIS | Modern dan Interaktif</p>
+        </div>
+    </footer>
+</body>
+
+</html>

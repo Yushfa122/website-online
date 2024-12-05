@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran Kantin Eling</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script>
+        const menuPrices = {
+            "Ayam Geprek": 12000,
+            "Soto": 12000,
+            "Rawon": 12000,
+            "Gado-gado": 12000,
+            "Nasi Pecel": 12000,
+            "Tahu Telor": 10000,
+            "Nasi Campur": 10000,
+            "Bubur Ayam": 12000,
+            "Tahu Campur": 12000,
+            "Pempek": 10000,
+            "Omelet": 10000,
+            "Aneka Lalapan": 12000,
+            "Aneka Gorengan": 1000,
+            "Aneka Sayuran": 3000,
+            "Es Campur": 4000,
+            "Es Buah": 4000,
+            "Es Teh": 4000,
+            "Es Jeruk": 4000,
+            "Es Manado": 4000,
+            "Es Dawet": 4000,
+            "Es Cincau": 4000,
+            "Es Capcin": 4000,
+            "Es Mocca": 4000,
+            "Es Kacang Ijo": 4000,
+            "Aneka Jus Buah": 4000,
+            "Lemon Tea": 4000,
+            "Sogem": 4000,
+            "Extra Joss/Joshua": 4000,
+            "Kukubima/Kubisu": 4000,
+            "Pop Ice": 4000,
+            "Nutrisari": 4000,
+            "Wedang Jahe": 4000,
+            "Kopi": 4000
+        };
+
+        function updateTotal() {
+            let total = 0;
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            checkboxes.forEach((checkbox) => {
+                total += menuPrices[checkbox.value];
+            });
+            document.getElementById('total').value = total;
+        }
+
+        function showQRCode(event) {
+            event.preventDefault(); // Mencegah pengiriman form default
+            const total = document.getElementById('total').value;
+            const qrCodeContainer = document.getElementById('qr-code');
+            qrCodeContainer.innerHTML = `
+                <h3>Total Pembayaran: Rp ${total}</h3>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?data=Total%20Pembayaran%20Rp.${total}&size=200x200" alt="QR Code">
+            `;
+            qrCodeContainer.style.display = 'block'; // Menampilkan QR code
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Kantin Eling</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="menu.html" class="nav-link">Menu</a></li>
+                    <li><a href="#" class="nav-link">Tentang Kami</a></li>
+                    <li><a href="#" class="nav-link">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2>Pembayaran</h2>
+        <form onSubmit="showQRCode(event)">
+            <label for="nama">Nama:</label>
+            <input type="text" id="nama" name="nama" required>
+
+            <h3>Pilih Menu:</h3>
+            <p>Makanan</p>
+            <div>
+                <input type="checkbox" id="ayam-geprek" name="menu" value="Ayam Geprek" onClick="updateTotal()">
+                <label for="ayam-geprek">Ayam Geprek - Rp 12.000</label><br>
+
+                <input type="checkbox" id="soto" name="menu" value="Soto" onClick="updateTotal()">
+                <label for="soto">Soto - Rp 12.000</label><br>
+
+                <input type="checkbox" id="rawon" name="menu" value="Rawon" onClick="updateTotal()">
+                <label for="rawon">Rawon - Rp 12.000</label><br>
+
+                <input type="checkbox" id="gado-gado" name="menu" value="Gado-gado" onClick="updateTotal()">
+                <label for="gado-gado">Gado-gado - Rp 12.000</label><br>
+
+                <input type="checkbox" id="nasi-pecel" name="menu" value="Nasi Pecel" onClick="updateTotal()">
+                <label for="nasi-pecel">Nasi Pecel - Rp 12.000</label><br>
+
+                <input type="checkbox" id="tahu-telor" name="menu" value="Tahu Telor" onClick="updateTotal()">
+                <label for="tahu-telor">Tahu Telor - Rp 10.000</label><br>
+
+                <input type="checkbox" id="nasi-campur" name="menu" value="Nasi Campur" onClick="updateTotal()">
+                <label for="nasi-campur">Nasi Campur - Rp 10.000</label><br>
+
+                <input type="checkbox" id="bubur-ayam" name="menu" value="Bubur Ayam" onClick="updateTotal()">
+                <label for="bubur-ayam">Bubur Ayam - Rp 12.000</label><br>
+
+                <input type="checkbox" id="tahu-campur" name="menu" value="Tahu Campur" onClick="updateTotal()">
+                <label for="tahu-campur">Tahu Campur - Rp 12.000</label><br>
+
+                <input type="checkbox" id="pempek" name="menu" value="Pempek" onClick="updateTotal()">
+                <label for="pempek">Pempek - Rp 10.000</label><br>
+
+                <input type="checkbox" id="omelet" name="menu" value="Omelet" onClick="updateTotal()">
+                <label for="omelet">Omelet - Rp 10.000</label><br>
+
+                <input type="checkbox" id="aneka-lalapan" name="menu" value="Aneka Lalapan" onClick="updateTotal()">
+                <label for="aneka-lalapan">Aneka Lalapan - Rp 12.000</label><br>
+
+                <input type="checkbox" id="aneka-gorengan" name="menu" value="Aneka Gorengan" onClick="updateTotal()">
+                <label for="aneka-gorengan">Aneka Gorengan - Rp 1.000</label><br>
+
+                <input type="checkbox" id="aneka-sayuran" name="menu" value="Aneka Sayuran" onClick="updateTotal()">
+                <label for="aneka-sayuran">Aneka Sayuran - Rp 3.000</label>
+                <p>&nbsp;</p>
+                <p>Minuman<br>
+                </p>
+                <label for="es-campur"></label>
+
+                <input type="checkbox" id="es-buah" name="menu" value="Es Buah" onClick="updateTotal()">
+                <label for="es-buah">Es Buah - Rp 4.000</label><br>
+
+                <input type="checkbox" id="es-teh" name="menu" value="Es Teh" onClick="updateTotal()">
+                <label for="es-teh">Es Teh - Rp 4.000</label><br>
+
+                <input type="checkbox" id="es-jeruk" name="menu" value="Es Jeruk" onClick="updateTotal()">
+                <label for="es-jeruk">Es Jeruk - Rp 4.000</label><br>
+
+                <input type="checkbox" id="es-manado" name="menu" value="Es Manado" onClick="updateTotal()">
+                <label for="es-manado">Es Manado - Rp 4.000</label><br>
+
+                <input type="checkbox" id="es-dawet" name="menu" value=" Es Dawet" onClick="updateTotal()">
+                <label for="es-dawet">Es Dawet - Rp 4.000</label><br>
+
+                <input type="checkbox" id="es-cincau" name="menu" value="Es Cincau" onClick="updateTotal()">
+                <label for="es-cincau">Es Cincau - Rp 4.000</label><br>
+
+                <input type="checkbox" id="es-capcin" name="menu" value="Es Capcin" onClick="updateTotal()">
+                <label for="es-capcin">Es Capcin - Rp 4.000</label><br>
+
+                <input type="checkbox" id="es-mocca" name="menu" value="Es Mocca" onClick="updateTotal()">
+                <label for="es-mocca">Es Mocca - Rp 4.000</label><br>
+
+                <input type="checkbox" id="es-kacang-ijo" name="menu" value="Es Kacang Ijo" onClick="updateTotal()">
+                <label for="es-kacang-ijo">Es Kacang Ijo - Rp 4.000</label><br>
+
+                <input type="checkbox" id="aneka-jus-buah" name="menu" value="Aneka Jus Buah" onClick="updateTotal()">
+                <label for="aneka-jus-buah">Aneka Jus Buah - Rp 4.000</label><br>
+
+                <input type="checkbox" id="lemon-tea" name="menu" value="Lemon Tea" onClick="updateTotal()">
+                <label for="lemon-tea">Lemon Tea - Rp 4.000</label><br>
+
+                <input type="checkbox" id="sogem" name="menu" value="Sogem" onClick="updateTotal()">
+                <label for="sogem">Sogem - Rp 4.000</label><br>
+
+                <input type="checkbox" id="extra-joss" name="menu" value="Extra Joss/Joshua" onClick="updateTotal()">
+                <label for="extra-joss">Extra Joss/Joshua - Rp 4.000</label><br>
+
+                <input type="checkbox" id="kukubima" name="menu" value="Kukubima/Kubisu" onClick="updateTotal()">
+                <label for="kukubima">Kukubima/Kubisu - Rp 4.000</label><br>
+
+                <input type="checkbox" id="pop-ice" name="menu" value="Pop Ice" onClick="updateTotal()">
+                <label for="pop-ice">Pop Ice - Rp 4.000</label><br>
+
+                <input type="checkbox" id="nutrisari" name="menu" value="Nutrisari" onClick="updateTotal()">
+                <label for="nutrisari">Nutrisari - Rp 4.000</label><br>
+
+                <input type="checkbox" id="wedang-jahe" name="menu" value="Wedang Jahe" onClick="updateTotal()">
+                <label for="wedang-jahe">Wedang Jahe - Rp 4.000</label><br>
+
+                <input type="checkbox" id="kopi" name="menu" value="Kopi" onClick="updateTotal()">
+                <label for="kopi">Kopi - Rp 4.000</label><br>
+            </div>
+
+            <h3>Total Harga:</h3>
+            <input type="text" id="total" name="total" value="0" readonly>
+
+            <button type="submit">Bayar</button>
+        </form>
+
+        <div id="qr-code" style="display:none;"></div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Kantin Eling | Menyajikan Makanan dan Minuman Lezat</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
